@@ -14,11 +14,11 @@
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
 */
-function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
-}
-
-// ⭐️ Example Challenge END ⭐️
+// function processFirstItem(stringList, callback) {
+//   return callback(stringList[0])
+// }
+// console.log(processFirstItem())
+// // ⭐️ Example Challenge END ⭐️
 
 
 ///// M V P ///////
@@ -27,11 +27,11 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ * In counter 1, count is defined within the function, giving the variable block-level scope. 
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ * Function 2 uses closure since it reaches outside for the variable count.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ * counter1 would store memory of the variable and therefore count will remain to increase by one, while counter2 will reset.
 */
 
 // counter1 code
@@ -51,17 +51,25 @@ function counter2() {
   return count++;
 }
 
-
 /* Task 2: inning() 
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning = ()=>{
+  // pointsScored = Math.round(Math.random());
+  return Math.floor(Math.random * 3);
 }
-
+console.log(inning());
+const finalScore = (callback,num)=>{
+  let score = []
+   for(let i=0;i<num;i++){
+    score.push({
+      home:callback(),
+      away:callback()
+    })
+   }
+}
+console.log(finalScore(inning,9))
 /* Task 3: finalScore()
 
 Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
@@ -76,14 +84,11 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function finalScore(inningFunction,numberOfInnings){
+  return inning()
 }
 
 /* Task 4: 
-
 Create a function called `scoreboard` that accepts the following parameters: 
 
 (1) Callback function `getInningScore`
@@ -108,3 +113,24 @@ function scoreboard(/* CODE HERE */) {
 }
 
 
+const numbersconverter = (num) => {
+  let suffix = "th"
+  if (num===1){
+    suffix = "st"
+  }
+  if (num===2){
+    suffix = "nd"
+  }
+  if (num===3){
+    suffix = "rd"
+  }
+
+  return num + suffix
+}
+
+const innings  = (callback, num) =>{
+  let tempString = ""
+  for(i=0;i<num;i++;){
+    tempString = tempString+(`$callback(i+1)} Inning`)
+  }
+}
